@@ -1,5 +1,5 @@
 public class Sorting {
-    public void BubbleSort(int[] nums){
+    public static void BubbleSort(int[] nums){
         for (int i = 0; i < nums.length-1; i++) {
             for (int j = 1; j < nums.length-i; j++) {
                 if(nums[j-1]>nums[j]){
@@ -9,11 +9,50 @@ public class Sorting {
                 }
             }
         }
+        for (int i : nums) {
+            System.out.print(i+" ");
+            System.out.println();
+        }
     }
 
-    public void SelectionSort(int[] nums){
+    public static void SelectionSort(int[] nums){
         for (int i = 0; i < nums.length; i++) {
-            
+            int min = nums[i];    
+            int index = i;
+                for (int j = i+1; j < nums.length; j++) {
+                    min = Math.min(min, nums[j]);    
+                    if(min == nums[j]){index = j;}  
+                }            
+            if(min == nums[i]){continue;}
+            else{
+                int temp = nums[i];
+                nums[i] = min;
+                nums[index] = temp;
+            }    
+
         }
+        for (int i : nums) {
+            // System.out.print(i+" ");
+            // System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {9,4,2,3,6,5,1,7,8,0,2};
+        BubbleSort(nums);
+        SelectionSort(nums);
+    }
+
+    
+}
+
+class Pair{
+    int a;
+    int b;
+    public
+     Pair(int a,int b){
+        this.a = a;
+        this.b = b;
+
     }
 }
