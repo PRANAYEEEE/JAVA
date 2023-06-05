@@ -54,14 +54,60 @@ public class Sorting {
         }
     }
 
+    public static void mergeSort(int[] nums){
+        int length = nums.length;
+        if(length<=1){return;}
 
+        int mid = length/2;
+        int l[] = new int[mid];
+        int r[] = new int[length-mid];
+
+        int i=0,j=0;
+
+        for(;i<length;i++){
+            if(i<mid){
+                l[i] = nums[i];
+            }
+            else{
+                r[j] = nums[i];
+                j++;    
+            }
+        }
+        mergeSort(l);
+        mergeSort(r);
+        merge(l, r, nums);
+
+    }
+    public static void merge(int left[],int right[],int[] nums){
+        int ls = nums.length/2;
+        int rs = nums.length-ls;
+        int i=0,l=0,r=0;
+
+        while(l<ls && r<rs){
+            if(left[l] < right[r]){
+                nums[i] = left[l];
+                i++;l++;
+            }
+            else{
+                nums[i] = right[r];
+                i++;r++;
+            }
+        }
+        while(l<ls){nums[i] = left[l];i++;l++;}
+        while(r<rs){nums[i] = right[r];i++;r++;}
+
+    }
 
 
     public static void main(String[] args) {
         int[] nums = {9,4,2,3,6,5,1,7,8,0,2};
-        BubbleSort(nums);
-        SelectionSort(nums);
-        InsertionSort(nums);
+        // BubbleSort(nums);
+        // SelectionSort(nums);
+        // InsertionSort(nums);
+        mergeSort(nums);
+        for (int i : nums) {
+            System.out.println(i);
+        }
     }
 
     
